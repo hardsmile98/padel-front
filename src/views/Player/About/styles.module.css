@@ -178,7 +178,9 @@
     }
 
     .playerPhoto {
-        width: 300px;
+        height: 560px;
+        width: auto;
+        object-fit: contain;
     }
 
     .content {
