@@ -1,13 +1,166 @@
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes fade {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
+}
+
 .about {
     height: 660px;
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+.backgroundBlur {
+    animation: fade 4s infinite linear;
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 0;
+}
+
+.backgroundGo {
+    opacity: 0.6;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
 }
 
 .playerWrapper {
     display: flex;
     flex-direction: column;;
-    height: 600px;
+    height: 660px;
+    position: relative;
 }
 
 .logo {
     margin-top: 40px;
+}
+
+.playerPhoto {
+    z-index: 0;
+    position: absolute;
+    bottom: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.defaultPlayer {
+    z-index: 0;
+    position: absolute;
+    top: 60px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.content {
+    z-index: 1;
+    margin-top: 40px;
+    margin-bottom: 60px;
+    flex-grow: 1;
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.rating {
+    position: relative;
+    font-size: var(--h5);
+    font-weight: 600;
+    margin-bottom: 20px;
+    width: 76px;
+    height: 63px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.rating img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.playerInfo {
+    z-index: 1;
+    flex-direction: column;
+    display: flex;
+    justify-content: flex-end;
+    gap: 5px;
+}
+
+.playerInfo p {
+    color: var(--gray);
+}
+
+.description {
+    width: 100%;
+    max-width: 420px;
+    position: relative;
+    z-index: 1;
+    flex-direction: column;
+    display: flex;
+    justify-content: space-between;
+
+}
+
+.description li {
+    font-size: var(--body0);
+    list-style: disc;
+    list-style-position: inside;
+    margin-bottom: 15px;
+}
+
+.buttonWrapper {
+    display: flex;
+    width: 100%;
+    justify-content: flex-end;
+}
+
+.buttonLink {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    width: 230px;
+    height: 65px;
+    background-color: var(--primary);
+    color: var(--black);
+    text-transform: uppercase;
+    border-radius: 300px;
+    font-size: var(--caption);
+    font-weight: 600;
+}
+
+.buttonLink span {
+    position: relative;
+    width: 22px;
+    height: 22px;
+}
+
+.buttonLink span img {
+    animation: rotate 10s infinite linear;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
 }

@@ -5,8 +5,12 @@ import styles from './styles.module.css';
 import Image from 'next/image';
 import logo from '@/src/assets/images/logo.svg';
 import defaultPlayer from '@/src/assets/images/player-placeholder.svg';
+import buttonIcon from '@/src/assets/images/button-icon.svg';
+import wreath from '@/src/assets/images/wreath.svg';
 import Link from 'next/link';
 import env from '@/src/env';
+import backgroundBlur from '@/src/assets/images/player-bg.webp';
+import backgroundGo from '@/src/assets/images/player-go.svg';
 
 const About = ({ data }: { data: GetPlayerBySlugResponse }) => {
 
@@ -17,6 +21,22 @@ const About = ({ data }: { data: GetPlayerBySlugResponse }) => {
       id="about"
       className={styles.about}
     >
+      <Image
+        className={styles.backgroundBlur}
+        width={1920}
+        height={1080}
+        src={backgroundBlur}
+        alt="background"
+      />
+
+      <Image 
+        className={styles.backgroundGo}
+        width={1015}
+        height={520}
+        src={backgroundGo}
+        alt="background"
+      />
+
       <Container>
         <div className={styles.playerWrapper}>
           <div className={styles.logo}>
@@ -28,8 +48,8 @@ const About = ({ data }: { data: GetPlayerBySlugResponse }) => {
             />
           </div>
 
-          <div>
-            <div>
+          <div className={styles.content}>
+            <div className={styles.playerInfo}>
               <h1>{player.firstName} {player.lastName}</h1>
 
               <p>Участник сезона GoPadel League</p>
@@ -37,11 +57,13 @@ const About = ({ data }: { data: GetPlayerBySlugResponse }) => {
 
             {player.photoUrl ? (
                 <img
-                 src={player.photoUrl}
-                 alt={player.firstName} 
+                  className={styles.playerPhoto}
+                  src={player.photoUrl}
+                  alt={player.firstName} 
                 />
               ): (
                 <Image
+                  className={styles.defaultPlayer}
                   width={1070} 
                   height={840} 
                   src={defaultPlayer} 
@@ -49,27 +71,49 @@ const About = ({ data }: { data: GetPlayerBySlugResponse }) => {
                 />
               )}
 
-            <div>
-                <div>
+            <div className={styles.description}>
+              <div>
                 {player.raiting && (
-                    <div>
-                    {player.raiting}
-                    </div>
+                  <div className={styles.rating}>
+                    <Image
+                      width={76}
+                      height={63}
+                      src={wreath}
+                      alt="wreath"
+                    />
+
+                    <span>
+                      {player.raiting}
+                    </span>
+                  </div>
                 )}
 
                 {player.description && (
-                    <ul>
-                        {player.description.map((item, index) => (
-                            <li key={index}>{item}</li>
-                        ))}
-                    </ul>
-                )}
+                  <ul>
+                    {player.description.map((item, index) => (
+                      <li key={index}>{item}</li>
+                    ))}
+                   </ul>
+                  )}
                 </div>
 
                 {env.LANDING_URL && (
-                    <Link href={env.LANDING_URL}>
-                        Записаться в лигу
+                  <div className={styles.buttonWrapper}>
+                    <Link 
+                      className={styles.buttonLink}
+                      href={env.LANDING_URL}>
+                      Записаться в лигу
+
+                    <span>       
+                      <Image
+                        width={22}
+                        height={22}
+                        src={buttonIcon}
+                        alt="icon"
+                      />
+                    </span>
                     </Link>
+                  </div>
                 )}
             </div>
           </div>
