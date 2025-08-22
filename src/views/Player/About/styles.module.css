@@ -118,7 +118,6 @@
     flex-direction: column;
     display: flex;
     justify-content: space-between;
-
 }
 
 .description li {
@@ -126,6 +125,9 @@
     list-style: disc;
     list-style-position: inside;
     margin-bottom: 15px;
+    text-shadow:
+        0 2px 4px rgba(0,0,0,.6),
+        0 0 1px rgba(0,0,0,.6);
 }
 
 .buttonWrapper {
@@ -163,4 +165,41 @@
     left: 0;
     right: 0;
     bottom: 0;
+}
+
+@media (max-width: 600px) {
+    .about {
+        height: 680px;
+    }
+
+    .logo {
+        display: flex;
+        justify-content: center;
+    }
+
+    .playerPhoto {
+        width: 300px;
+    }
+
+    .content {
+        flex-direction: column;
+        gap: 20px;
+        margin-top: 40px;
+        margin-bottom: 30px;
+    }
+
+    .buttonWrapper {
+        margin-top: 20px;
+        display: flex;
+        width: 100%;
+        justify-content: flex-end;
+    }
+    
+    .buttonLink {
+        width: 100%;
+    }
+
+    .description {
+        max-width: 100%;
+    }
 }
