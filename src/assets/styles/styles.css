@@ -1,0 +1,107 @@
+:root{
+    --body0: 1.15rem;
+    --body1: 1rem;
+    --h1: 2.5rem;
+    --h2: 2.25rem;
+    --h3: 2rem;
+    --h4: 1.5rem;
+    --h5: 1.3rem;
+    --h6: 1.15rem;
+
+    --unit: 10px;
+
+    --white: #fff;
+    --black: #000;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    font-family: "Inter", sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    background-color: var(--black);
+    color: var(--white);
+}
+
+html {
+    height: 100%;
+    overflow: hidden;
+}
+
+body {
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+h1 {
+    font-weight: 700;
+    font-size: var(--h1);
+}
+
+h2 {
+    font-weight: 700;
+    font-size: var(--h2);
+}
+
+h3 {
+    font-weight: 700;
+    font-size: var(--h3);
+}
+
+h4 {
+    font-weight: 700;
+    font-size: var(--h4);
+}
+
+h5 {
+    font-weight: 700;
+    font-size: var(--h5);
+}
+
+h6 {
+    font-weight: 700;
+    font-size: var(--h6);
+}
+
+ul, li {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+button,
+input,
+textarea {
+    font-family: inherit;
+    font-size: inherit;
+}
+
+button:not(:disabled) {
+    cursor: pointer;
+}
+
+button:disabled {
+    filter: grayscale(100);
+    cursor: not-allowed;
+}
+
+a {
+    color: unset;
+    text-decoration: none;
+    transition: 0.3s all ease;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+input, textarea {
+    font-family: inherit;
+}

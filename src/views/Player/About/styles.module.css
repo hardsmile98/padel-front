@@ -1,0 +1,13 @@
+.about {
+    height: 660px;
+}
+
+.playerWrapper {
+    display: flex;
+    flex-direction: column;;
+    height: 600px;
+}
+
+.logo {
+    margin-top: 40px;
+}
