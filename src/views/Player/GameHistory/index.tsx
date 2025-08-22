@@ -8,9 +8,9 @@ const GameHistory = () => {
         id="game-history"
     >
         <Container>
-            <h2 className={styles.title}>
-                История игр в лиге
-            </h2>
+          <h2 className={styles.title}>
+            История игр в лиге
+          </h2>
         </Container>
     </section>
   )
