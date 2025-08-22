@@ -189,6 +189,14 @@
         object-fit: contain;
     }
 
+    .defaultPlayer {
+        height: 520px;
+        width: auto;
+        object-fit: contain;
+        bottom: -60px;
+        top: auto;
+    }
+
     .content {
         flex-direction: column;
         gap: 20px;
