@@ -152,3 +152,15 @@ export type GetGroupStatisticsResponse = {
     createdAt: string;
   }[];
 };
+
+export type TeamStats = {
+  teamId: number;
+  name: string;
+  results: Record<number, "W" | "L" | null>;
+  wins: number;
+  losses: number;
+  setsWon: number;
+  setsLost: number;
+  gamesWon: number;
+  gamesLost: number;
+};
