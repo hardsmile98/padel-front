@@ -1,21 +1,37 @@
 import env from "@/src/env";
-import { GetTournamentsPlayersResponse } from "@/src/types";
+import { GetActiveTournamentResponse, GetTournamentsPlayersResponse } from "@/src/types";
 import { Main } from "@/src/views";
 
+const revalidate = 1;
+
 export default async function Home() {
-  let data: GetTournamentsPlayersResponse = [];
+  let players: GetTournamentsPlayersResponse = [];
+
+  let tournament: GetActiveTournamentResponse | null = null;
 
   try {
     const res = await fetch(`${env.API_URL}/api/common/tournaments/players`, {
       next: {
-        revalidate: 1,
+        revalidate,
       },
     });
 
-    data = await res?.json() || [];
+    players = await res?.json() || [];
   } catch (_) {
-    data = [];
+    players = [];
   }
 
-  return <Main players={data} />;
+  try {
+    const res = await fetch(`${env.API_URL}/api/common/tournaments/active`, {
+      next: {
+        revalidate,
+      },
+    });
+
+    tournament = await res?.json() || null;
+  } catch (_) {
+    tournament = null;
+  }
+
+  return <Main players={players} tournament={tournament} />;
 }

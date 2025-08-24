@@ -1,0 +1,89 @@
+.stages {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 40px;
+}
+
+.groups {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.stageName {
+    text-align: center;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    font-size: 14px;
+}
+
+.stage > button,
+.groups > button {
+    border: none;
+    background: none;
+    cursor: pointer;
+    width: 200px;
+    height: 65px;
+    border-radius: 30px;
+    background: #222222;
+    color: var(--white);
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+}
+
+.stage > .stageActive,
+.groups > .groupActive {
+    background: var(--primary);
+    color: var(--black);
+}
+
+.stage > button:disabled {
+    color: #848484;
+    cursor: not-allowed;
+}
+
+.leages,
+.subLeages {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.leages > button,
+.subLeages > button {
+    border: none;
+    background: none;
+    cursor: pointer;
+    width: 300px;
+    height: 65px;
+    border-radius: 30px;
+    border: 2px solid #4D4D4D;
+    color: var(--white);
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+}
+
+.leages > button.leageActive,
+.subLeages > button.subLeageActive {
+    border-color: var(--primary);
+    color: var(--white);
+}
+
+@media (max-width: 900px) {
+    .leages > button,
+    .subLeages > button {
+        width: calc(50% - 5px);
+    }
+
+    .groups > button {
+        width: calc(100% / 3 - 10px / 3 * 2);
+    }
+}

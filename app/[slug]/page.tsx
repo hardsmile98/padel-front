@@ -3,6 +3,8 @@ import env from "@/src/env";
 import { Player } from "@/src/views";
 import type { Metadata } from "next";
 
+const revalidate = 60 * 5;
+
 export async function generateMetadata({
   params: awaitedParams,
 }: {
@@ -16,7 +18,7 @@ export async function generateMetadata({
     const res = await fetch(
       `${env.API_URL}/api/common/get-player-by-slug/${slug}`,
       {
-        next: { revalidate: 60 * 5 },
+        next: { revalidate },
       }
     );
 
@@ -61,7 +63,7 @@ export async function generateStaticParams() {
   try {
     const res = await fetch(`${env.API_URL}/api/common/get-players`, {
       next: {
-        revalidate: 60 * 5,
+        revalidate,
       },
     });
 
@@ -91,7 +93,7 @@ export default async function PlayerPage({
       `${env.API_URL}/api/common/get-player-by-slug/${slug}`,
       {
         next: {
-          revalidate: 60 * 5,
+          revalidate,
         },
       }
     );

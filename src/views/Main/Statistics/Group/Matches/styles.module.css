@@ -1,25 +1,21 @@
-.title {
-    margin-bottom: 20px;
+.matches {
+    margin-top: 30px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
 }
 
-.gameHistory {
-    padding: 60px 0;
+.matches > div {
+    width: calc(50% - 10px);
+}
+
+.title {
+    margin-bottom: 20px;
 }
 
 .empty {
     margin-top: 10px;
     color: var(--gray);
-}
-
-.matches {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    margin-top: 30px;
-}
-
-.matches > div {
-    width: calc(50% - 10px);
 }
 
 @media (max-width: 900px) {    

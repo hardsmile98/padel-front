@@ -1,18 +1,30 @@
-import { GetTournamentsPlayersResponse } from "@/src/types"
-import GoToLanding from "./GoToLanding"
-import Partners from "./Partners"
-import Players from "./Players"
+import {
+  GetActiveTournamentResponse,
+  GetTournamentsPlayersResponse,
+} from "@/src/types";
+import GoToLanding from "./GoToLanding";
+import Partners from "./Partners";
+import Players from "./Players";
+import Statistics from "./Statistics";
 
-function Main({ players }: { players: GetTournamentsPlayersResponse }) {
+function Main({
+  players,
+  tournament,
+}: {
+  players: GetTournamentsPlayersResponse;
+  tournament: GetActiveTournamentResponse | null;
+}) {
   return (
     <>
-        <Players players={players} />
+      <Players players={players} />
 
-        <Partners />
+      {tournament && <Statistics tournament={tournament} />}
 
-        <GoToLanding />
+      <Partners />
+
+      <GoToLanding />
     </>
-  )
+  );
 }
 
-export default Main
+export default Main;
