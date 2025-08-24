@@ -12,7 +12,7 @@ export async function generateMetadata({ params: awaitedParams }: {
     const { slug } = params;
 
     const res = await fetch(`${env.API_URL}/api/common/get-player-by-slug/${slug}`, {
-      next: { revalidate: 60 },
+      next: { revalidate: 60 * 5 },
     });
 
     const data = await res.json();
@@ -57,7 +57,7 @@ export async function generateStaticParams() {
 
   const res = await fetch(`${env.API_URL}/api/common/get-players`, {
     next: {
-      revalidate: 60,
+      revalidate: 60 * 5,
     },
   });
 
@@ -81,7 +81,7 @@ export default async function PlayerPage({ params }: { params: { slug: string } 
 
   const res = await fetch(`${env.API_URL}/api/common/get-player-by-slug/${slug}`, {
     next: {
-      revalidate: 60,
+      revalidate: 60 * 5,
     },
   });
 
