@@ -6,9 +6,9 @@ const Player = ({ data }: { data: GetPlayerBySlugResponse }) => {
 
   return (
     <>
-      <About data={data} />
+      <About player={data.player} />
 
-      <GameHistory />
+      <GameHistory matches={data.matches} />
     </>
   )
 }

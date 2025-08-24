@@ -3,13 +3,15 @@ import env from "@/src/env";
 import { Player } from "@/src/views";
 import type { Metadata } from "next";
 
-export async function generateMetadata({ params: awaitedParams }: { params: Promise<{ id: string }> }): Promise<Metadata> {
+export async function generateMetadata({ params: awaitedParams }: { 
+  params: Promise<{ slug: string }>
+}): Promise<Metadata> {
   try {
     const params = await awaitedParams;
 
-    const { id } = params;
+    const { slug } = params;
 
-    const res = await fetch(`${env.API_URL}/api/common/get-player-by-slug/${id}`, {
+    const res = await fetch(`${env.API_URL}/api/common/get-player-by-slug/${slug}`, {
       next: { revalidate: 60 },
     });
 
@@ -74,10 +76,10 @@ export async function generateStaticParams() {
 }
 
 
-export default async function PlayerPage({ params }: { params: { id: string } }) {
-  const { id } = await params;
+export default async function PlayerPage({ params }: { params: { slug: string } }) {
+  const { slug } = await params;
 
-  const res = await fetch(`${env.API_URL}/api/common/get-player-by-slug/${id}`, {
+  const res = await fetch(`${env.API_URL}/api/common/get-player-by-slug/${slug}`, {
     next: {
       revalidate: 60,
     },

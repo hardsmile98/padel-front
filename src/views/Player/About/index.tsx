@@ -12,9 +12,9 @@ import env from '@/src/env';
 import backgroundBlur from '@/src/assets/images/player-bg.webp';
 import backgroundGo from '@/src/assets/images/player-go.svg';
 
-const About = ({ data }: { data: GetPlayerBySlugResponse }) => {
-
-  const { player } = data;
+const About = ({ player }: { player: GetPlayerBySlugResponse['player'] }) => {
+  
+  const formattedDescription = player.description.filter((item: string) => item.trim() !== '');
 
   return (
     <section 
@@ -88,9 +88,9 @@ const About = ({ data }: { data: GetPlayerBySlugResponse }) => {
                   </div>
                 )}
 
-                {player.description && (
+                {Array.isArray(formattedDescription) && formattedDescription.length > 0 && (
                   <ul>
-                    {player.description.map((item, index) => (
+                    {formattedDescription.map((item, index) => (
                       <li key={index}>{item}</li>
                     ))}
                    </ul>

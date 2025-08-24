@@ -1,0 +1,82 @@
+.match {
+    width: 100%;
+}
+
+.team {
+    width: 100%;
+    padding: 30px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 500;
+}
+
+.team > div {
+    flex-grow: 1;
+}
+
+.team > div:first-child {
+    width: 60%;
+}
+
+.team > div:last-child {
+    width: 40%;
+}
+
+.team1 {
+    border-radius: 30px 30px 0 0;
+    background-color: #222222;
+    color: var(--white);
+}
+
+.team2 {
+    border-radius: 0 0 30px 30px;
+    color: var(--black);
+    background-color: #93DB2E;
+}
+
+.match:nth-child(even) .team1 {
+    background-color: #93DB2E;
+    color: var(--black);
+}
+
+.match:nth-child(even) .team2 {
+    background-color: #222222;
+    color: var(--white);
+}
+
+.teamName {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.teamPlayer > img {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.teamPlayer {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.teamScore {
+    font-size: 30px;
+    display: flex;
+    justify-content: space-between;
+}
+
+@media (max-width: 600px) {    
+    .team {
+        padding: 20px;
+    }
+
+    .teamPlayer > img {
+        width: 32px;
+        height: 32px;
+    }
+}
