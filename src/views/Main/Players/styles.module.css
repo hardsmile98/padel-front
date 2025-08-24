@@ -1,0 +1,112 @@
+.players {
+    position: relative;
+    height: 640px;
+}
+
+.wrapper {
+    position: relative;
+    z-index: 10;
+    height: 640px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.gradient {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.background video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.logo {
+    margin-top: 40px;
+}
+
+.footer {
+    margin-bottom: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 20px;
+
+}
+
+.playersList {
+    height: 150px;
+    width: 500px;
+    border-radius: 20px;
+    order: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: url("@/src/assets/images/players-list-bg.webp");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.description {
+    order: 1;
+}
+
+.description p {
+    font-weight: 500;
+    margin-top: 10px
+}
+
+.description p span {
+    font-weight: 400;
+    color: var(--gray);
+}
+
+@media (max-width: 600px) {
+    .players {
+        height: 760px;
+    }
+    
+    .wrapper {
+        height: 760px;
+    }
+
+    .footer {
+        flex-direction: column;
+        align-items: flex-start;
+        margin-bottom: 30px;
+    }
+
+    .description {
+        order: 2;
+    }
+
+    .description h1 {
+        font-size: var(--h3);
+    }
+
+    .playersList {
+        order: 1;
+        width: 100%;
+    }
+}

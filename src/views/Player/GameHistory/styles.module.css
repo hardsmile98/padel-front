@@ -1,5 +1,5 @@
 .gameHistory {
-    padding: 40px 0;
+    padding: 60px 0;
 }
 
 .empty {
@@ -18,7 +18,7 @@
     width: calc(50% - 10px);
 }
 
-@media (max-width: 600px) {    
+@media (max-width: 900px) {    
     .matches > div {
         width: 100%;
     }

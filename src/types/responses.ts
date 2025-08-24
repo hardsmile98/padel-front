@@ -46,3 +46,11 @@ export type GetPlayerBySlugResponse = {
     createdAt: string;
   }[];
 };
+
+export type GetTournamentsPlayersResponse = {
+  id: number;
+  firstName: string;
+  lastName: string;
+  slug: string;
+  avatarUrl: string;
+}[];

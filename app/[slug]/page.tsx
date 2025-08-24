@@ -3,17 +3,22 @@ import env from "@/src/env";
 import { Player } from "@/src/views";
 import type { Metadata } from "next";
 
-export async function generateMetadata({ params: awaitedParams }: { 
-  params: Promise<{ slug: string }>
+export async function generateMetadata({
+  params: awaitedParams,
+}: {
+  params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   try {
     const params = await awaitedParams;
 
     const { slug } = params;
 
-    const res = await fetch(`${env.API_URL}/api/common/get-player-by-slug/${slug}`, {
-      next: { revalidate: 60 * 5 },
-    });
+    const res = await fetch(
+      `${env.API_URL}/api/common/get-player-by-slug/${slug}`,
+      {
+        next: { revalidate: 60 * 5 },
+      }
+    );
 
     const data = await res.json();
 
@@ -28,16 +33,16 @@ export async function generateMetadata({ params: awaitedParams }: {
 
     const title = `${firstName} ${lastName}`;
 
-    const description = data.player.description 
-    ? data.player.description.join(' ') 
-    : 'Участник сезона GoPadel League';
+    const description = data.player.description
+      ? data.player.description.join(" ")
+      : "Участник сезона GoPadel League";
 
     return {
       title,
       description,
       openGraph: {
         title,
-        description: 'Участник сезона GoPadel League',
+        description: "Участник сезона GoPadel League",
         type: "website",
         siteName: "GoPadel League",
         locale: "ru_RU",
@@ -54,42 +59,51 @@ export async function generateMetadata({ params: awaitedParams }: {
 
 export async function generateStaticParams() {
   try {
+    const res = await fetch(`${env.API_URL}/api/common/get-players`, {
+      next: {
+        revalidate: 60 * 5,
+      },
+    });
 
-  const res = await fetch(`${env.API_URL}/api/common/get-players`, {
-    next: {
-      revalidate: 60 * 5,
-    },
-  });
+    const players = await res.json();
 
-  const players = await res.json();
+    if (!res.ok) {
+      return [];
+    }
 
-  if(!res.ok) {
-    return [];
-  }
-
-  return players.map((player: { slug: string }) => ({
+    return players.map((player: { slug: string }) => ({
       slug: player.slug,
-  }));
+    }));
   } catch (_) {
     return [];
   }
 }
 
+export default async function PlayerPage({
+  params,
+}: {
+  params: { slug: string };
+}) {
+  try {
+    const { slug } = await params;
 
-export default async function PlayerPage({ params }: { params: { slug: string } }) {
-  const { slug } = await params;
+    const res = await fetch(
+      `${env.API_URL}/api/common/get-player-by-slug/${slug}`,
+      {
+        next: {
+          revalidate: 60 * 5,
+        },
+      }
+    );
 
-  const res = await fetch(`${env.API_URL}/api/common/get-player-by-slug/${slug}`, {
-    next: {
-      revalidate: 60 * 5,
-    },
-  });
+    const data = await res.json();
 
-  const data = await res.json();
+    if (!res.ok || !data?.player) {
+      return notFound();
+    }
 
-  if(!res.ok || !data?.player) {
+    return <Player data={data} />;
+  } catch (_) {
     return notFound();
   }
-
-  return <Player data={data} />;
 }

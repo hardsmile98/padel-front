@@ -1,0 +1,128 @@
+.button {
+    width: 200px;
+    height: 50px;
+    border: none;
+    outline: none;
+    border-radius: 30px;
+    background-color: var(--primary);
+    color: var(--black);
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.modal.open {
+    opacity: 1;
+    height: 100vh;
+    width: 100%;
+    pointer-events: auto;
+}
+
+.modal {
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    position: fixed;
+    pointer-events: none; 
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+    background-color: rgba(0, 0, 0, 0.9);
+    z-index: 1000;
+    overflow-y: auto;
+}
+
+.modalClose {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+}
+
+.modalClose img {
+    width: 100%;
+    height: 100%;
+}
+
+.modalBody {
+    padding: 60px;
+}
+
+.playersList {
+    display: flex;
+    flex-wrap: wrap;
+    row-gap: 20px;
+    column-gap: 60px;
+}
+
+.player {
+    width: calc(25% - 45px);
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.player img {
+    width: 60px;
+    height: 60px;
+    border-width: 1px;
+    border-radius: 50%;
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    border-color: #425e1c;
+    border-style: solid;
+}
+
+.info {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.info > a {
+    color: var(--primary);
+    text-decoration: none;
+    font-size: 14px;
+    text-decoration: underline;
+}
+
+@media (max-width: 1200px) {
+    .player {
+        width: calc(100% / 3 - 40px);
+    }
+}
+
+@media (max-width: 900px) {
+    .modalBody {
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+
+    .player {
+        width: calc(100% / 2 - 30px);
+    }
+}
+
+@media (max-width: 600px) {
+    .modalBody {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    .playersList {
+        display: flex;
+        flex-wrap: wrap;
+        row-gap: 20px;
+        column-gap: 20px;
+    }
+
+    .player {
+        width: 100%;
+    }
+}
