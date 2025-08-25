@@ -8,7 +8,11 @@ export const metadata: Metadata = {
   title: "Расписание игр GoPadel League",
   description: "Расписание игр и их результаты лиги по падел среди предпринимателей, топ-менеджеров и медийных лиц GoPadel League",
   icons: {
-    icon: "/favicon.ico",
+    icon: {
+      url: "/favicon.ico",
+      href: "/favicon.ico",
+      type: "image/x-icon",
+    },
   },
   openGraph: {
     title: "Расписание игр GoPadel League ",
