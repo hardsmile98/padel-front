@@ -109,7 +109,7 @@ function Filter({
               type="button"
               onClick={() => setForm((prev) => ({ ...prev, leage: leage.id }))}
             >
-              <Image src={ball} alt="ball" width={12} height={12} />
+              {form.leage === leage.id && <Image className={styles.ball} src={ball} alt="ball" width={12} height={12} />}
 
               {leage.name}
             </button>

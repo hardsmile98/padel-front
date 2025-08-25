@@ -85,6 +85,22 @@
     color: var(--white);
 }
 
+.ball {
+    width: 12px;
+    height: 12px;
+    animation: rotate 8s linear infinite;
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
 @media (max-width: 1200px) {
     .leages > button,
     .subLeages > button {

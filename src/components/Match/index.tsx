@@ -5,9 +5,11 @@ import avatarPlaceholder from "@/src/assets/images/avatar-placeholder.webp";
 import styles from "./styles.module.css";
 
 function Match({ match }: { match: GetPlayerBySlugResponse["matches"][0] }) {
+
+  console.log(match)
   return (
     <div className={styles.match}>
-      <div className={`${styles.team} ${styles.team1}`}>
+      <div className={`${styles.team} ${styles.team1} ${match.winnerId === match.team1.id ? styles.teamWin : ""}`}>
         <div className={styles.teamName}>
           <div className={styles.teamPlayer}>
             {match.team1.player1.avatarUrl ? (
@@ -59,7 +61,7 @@ function Match({ match }: { match: GetPlayerBySlugResponse["matches"][0] }) {
         </div>
       </div>
 
-      <div className={`${styles.team} ${styles.team2}`}>
+      <div className={`${styles.team} ${styles.team2} ${match.winnerId === match.team2.id ? styles.teamWin : ""}`}>
         <div className={styles.teamName}>
           <div className={styles.teamPlayer}>
             {match.team2.player1.avatarUrl ? (
