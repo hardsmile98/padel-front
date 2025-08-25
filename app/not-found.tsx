@@ -1,7 +1,9 @@
 import { Metadata } from "next";
 import { NotFoundPage } from "@/src/views";
+import env from "@/src/env";
 
 export const metadata: Metadata = {
+    metadataBase: env.SITE_URL ? new URL(env.SITE_URL) : undefined,
     title: "Страница не найдена",
     description: "Страница не найдена",
     icons: {
