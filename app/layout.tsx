@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
 import "@/src/assets/styles/fonts.css";
 import "@/src/assets/styles/styles.css";
+import env from "@/src/env";
 
 export const metadata: Metadata = {
+  metadataBase: env.SITE_URL ? new URL(env.SITE_URL) : undefined,
   title: "Расписание игр GoPadel League",
   description: "Расписание игр и их результаты лиги по падел среди предпринимателей, топ-менеджеров и медийных лиц GoPadel League",
   icons: {
