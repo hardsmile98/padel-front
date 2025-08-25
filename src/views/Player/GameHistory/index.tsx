@@ -12,7 +12,7 @@ const GameHistory = ({
       <Container>
         <h2 className={styles.title}>История игр в лиге</h2>
 
-        {matches.length > 0 ? (
+        {matches?.length > 0 ? (
           <div className={styles.matches}>
             {matches.map((match) => (
               <Match key={match.id} match={match} />

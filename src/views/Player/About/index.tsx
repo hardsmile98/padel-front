@@ -14,7 +14,7 @@ import backgroundGo from '@/src/assets/images/player-go.svg';
 
 const About = ({ player }: { player: GetPlayerBySlugResponse['player'] }) => {
   
-  const formattedDescription = player.description.filter((item: string) => item.trim() !== '');
+  const formattedDescription = player?.description?.filter((item: string) => item.trim() !== '');
 
   return (
     <section 

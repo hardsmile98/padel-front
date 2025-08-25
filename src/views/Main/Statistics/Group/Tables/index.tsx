@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-key */
 import { TeamStats } from "@/src/types";
 import styles from "./styles.module.css";
 

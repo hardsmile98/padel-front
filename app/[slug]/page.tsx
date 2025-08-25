@@ -1,7 +1,7 @@
-import notFound from "@/app/not-found";
-import env from "@/src/env";
-import { Player } from "@/src/views";
-import type { Metadata } from "next";
+import notFound from '@/app/not-found';
+import env from '@/src/env';
+import { Player } from '@/src/views';
+import type { Metadata } from 'next';
 
 const revalidate = 60 * 5;
 
@@ -26,35 +26,37 @@ export async function generateMetadata({
 
     if (!res.ok || !data?.player) {
       return {
-        title: "Игрок не найден",
-        description: "Нет информации о данном игроке",
+        title: 'Игрок не найден',
+        description: 'Нет информации о данном игроке',
       };
     }
 
-    const { firstName, lastName } = data.player;
+    const firstName = data?.player?.firstName;
+
+    const lastName = data?.player?.lastName;
 
     const title = `${firstName} ${lastName}`;
 
-    const description = data.player.description
-      ? data.player.description.join(" ")
-      : "Участник сезона GoPadel League";
+    const description = Array.isArray(data?.player?.description)
+      ? data.player.description.join(' ')
+      : 'Участник сезона GoPadel League';
 
     return {
       title,
       description,
       openGraph: {
         title,
-        description: "Участник сезона GoPadel League",
-        type: "website",
-        siteName: "GoPadel League",
-        locale: "ru_RU",
-        countryName: "Россия",
+        description: 'Участник сезона GoPadel League',
+        type: 'website',
+        siteName: 'GoPadel League',
+        locale: 'ru_RU',
+        countryName: 'Россия',
       },
     };
   } catch (_) {
     return {
-      title: "Игрок не найден",
-      description: "Нет информации о данном игроке",
+      title: 'Игрок не найден',
+      description: 'Нет информации о данном игроке',
     };
   }
 }

@@ -2,7 +2,7 @@ import env from "@/src/env";
 import { GetActiveTournamentResponse, GetTournamentsPlayersResponse } from "@/src/types";
 import { Main } from "@/src/views";
 
-const revalidate = 1;
+const revalidate = 60 * 5;
 
 export default async function Home() {
   let players: GetTournamentsPlayersResponse = [];

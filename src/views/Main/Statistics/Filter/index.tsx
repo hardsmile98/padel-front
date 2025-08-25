@@ -36,21 +36,21 @@ function Filter({
   });
 
   const leages = useMemo(() => {
-    return tournament?.categories.filter(
+    return tournament?.categories?.filter(
       (category) =>
         category.stageId === form.stage && !category.parentCategoryId
     );
   }, [tournament?.categories, form.stage]);
 
   const subLeages = useMemo(() => {
-    return tournament?.categories.filter(
+    return tournament?.categories?.filter(
       (category) =>
         category.parentCategoryId === form.leage && category.stageId === form.stage
     );
   }, [tournament?.categories, form.leage, form.stage]);
 
   const groups = useMemo(() => {
-    return tournament?.groups.filter(
+    return tournament?.groups?.filter(
       (group) => group.categoryId === form.subLeage || group.categoryId === form.leage
     );
   }, [tournament?.groups, form.subLeage, form.leage]);
