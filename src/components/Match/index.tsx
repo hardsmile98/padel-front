@@ -5,8 +5,6 @@ import avatarPlaceholder from "@/src/assets/images/avatar-placeholder.webp";
 import styles from "./styles.module.css";
 
 function Match({ match }: { match: GetPlayerBySlugResponse["matches"][0] }) {
-
-  console.log(match)
   return (
     <div className={styles.match}>
       <div className={`${styles.team} ${styles.team1} ${match.winnerId === match.team1.id ? styles.teamWin : ""}`}>
