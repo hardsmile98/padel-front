@@ -17,7 +17,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Расписание игр GoPadel League ",
     description: "Расписание игр и их результаты лиги по падел среди предпринимателей, топ-менеджеров и медийных лиц GoPadel League",
-    images: ["/og-image.jpg"],
+    images: ["/opengraph-image.jpg"],
     type: "website",
     siteName: "GoPadel League",
     locale: "ru_RU",
