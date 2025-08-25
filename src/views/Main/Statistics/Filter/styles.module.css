@@ -59,7 +59,7 @@
     border: none;
     background: none;
     cursor: pointer;
-    width: 300px;
+    width: 260px;
     height: 65px;
     border-radius: 30px;
     border: 2px solid #4D4D4D;
@@ -71,10 +71,25 @@
     gap: 6px;
 }
 
-.leages > button.leageActive,
-.subLeages > button.subLeageActive {
+.leages > button {
+    width: 530px;
+}
+
+.leages > button.leageActive {
     border-color: var(--primary);
     color: var(--white);
+}
+
+.subLeages > button.subLeageActive {
+    border-color: var(--white);
+    color: var(--white);
+}
+
+@media (max-width: 1200px) {
+    .leages > button,
+    .subLeages > button {
+        width: calc(50% - 5px);
+    }
 }
 
 @media (max-width: 900px) {
