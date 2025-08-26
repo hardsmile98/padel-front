@@ -28,9 +28,16 @@
 
 .table th,
 .table td {
-  padding: 15px 10px;
+  padding: 15px;
   border: 1px solid #333;
   text-align: center;
+}
+
+.table th:nth-child(1),
+.table td:nth-child(1),
+.table th:nth-child(2),
+.table td:nth-child(2) {
+  text-align: left;
 }
 
 .table td {
@@ -73,11 +80,27 @@
 }
 
 .verticalText {
-  height: 180px;
+  height: 200px;
   overflow: hidden;
   text-overflow: ellipsis;
   transform: rotate(-90deg);
   transform-origin: center center;
+}
+
+.teamNames {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.teamNames > a {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.teamNames > a:hover {
+  color: var(--primary);
 }
 
 @media (max-width: 900px) {
@@ -96,14 +119,20 @@
   .table th,
   .table td {
     font-size: 14px;
-    padding: 5px;
+    padding: 10px;
     border: 1px solid #333;
-    text-align: center;
   }
 
   .table th,
   .table td:nth-child(1),
   .table td:nth-child(2) {
     font-size: 14px;
+  }
+
+  .table th:nth-child(1),
+  .table td:nth-child(1),
+  .table th:nth-child(2),
+  .table td:nth-child(2) {
+    padding: 15px;
   }
 }

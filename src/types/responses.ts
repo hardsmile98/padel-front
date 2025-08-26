@@ -20,12 +20,14 @@ export type GetPlayerBySlugResponse = {
         firstName: string;
         lastName: string;
         avatarUrl: string;
+        slug: string;
       };
       player2: {
         id: number;
         firstName: string;
         lastName: string;
         avatarUrl: string;
+        slug: string;
       };
     };
     team2: {
@@ -35,12 +37,14 @@ export type GetPlayerBySlugResponse = {
         firstName: string;
         lastName: string;
         avatarUrl: string;
+        slug: string;
       };
       player2: {
         id: number;
         firstName: string;
         lastName: string;
         avatarUrl: string;
+        slug: string;
       };
     };
     createdAt: string;
@@ -108,12 +112,14 @@ export type GetGroupStatisticsResponse = {
       id: number;
       player1: {
         id: number;
+        slug: string;
         firstName: string;
         lastName: string;
         avatarUrl: string;
       };
       player2: {
         id: number;
+        slug: string;
         firstName: string;
         lastName: string;
         avatarUrl: string;
@@ -123,12 +129,14 @@ export type GetGroupStatisticsResponse = {
       id: number;
       player1: {
         id: number;
+        slug: string;
         firstName: string;
         lastName: string;
         avatarUrl: string;
       };
       player2: {
         id: number;
+        slug: string;
         firstName: string;
         lastName: string;
         avatarUrl: string;
@@ -141,11 +149,13 @@ export type GetGroupStatisticsResponse = {
     player2Id: number;
     player1: {
       id: number;
+      slug: string;
       firstName: string;
       lastName: string;
     };
     player2: {
       id: number;
+      slug: string;
       firstName: string;
       lastName: string;
     };
@@ -155,7 +165,10 @@ export type GetGroupStatisticsResponse = {
 
 export type TeamStats = {
   teamId: number;
-  name: string;
+  team: {
+    name: string;
+    slug: string;
+  }[];
   results: Record<number, "W" | "L" | null>;
   wins: number;
   losses: number;

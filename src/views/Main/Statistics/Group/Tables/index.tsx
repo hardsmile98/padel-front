@@ -1,5 +1,6 @@
 import { TeamStats } from "@/src/types";
 import styles from "./styles.module.css";
+import Link from "next/link";
 
 function Tables({ stats }: { stats: TeamStats[] }) {
   return (
@@ -11,7 +12,11 @@ function Tables({ stats }: { stats: TeamStats[] }) {
             <th>Участники</th>
             {stats.map((t) => (
               <th key={t.teamId} className={styles.verticalText}>
-                {t.name}
+                <div className={styles.teamNames}>
+                  {t.team.map((team) => (
+                    <Link key={team.slug} href={`/${team.slug}`}>{team.name}</Link>
+                  ))}
+                </div>
               </th>
             ))}
             <th>Игры</th>
@@ -23,7 +28,13 @@ function Tables({ stats }: { stats: TeamStats[] }) {
           {stats.map((team, idx) => (
             <tr key={team.teamId}>
               <td>{idx + 1}</td>
-              <td>{team.name}</td>
+              <td>
+                <div className={styles.teamNames}>
+                  {team.team.map((team) => (
+                    <Link key={team.slug} href={`/${team.slug}`}>{team.name}</Link>
+                  ))}
+                </div>
+              </td>
               {stats.map((opponent) =>
                 team.teamId === opponent.teamId ? (
                   <td key={opponent.teamId} className={styles.empty}></td>

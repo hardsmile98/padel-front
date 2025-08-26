@@ -52,9 +52,20 @@
 }
 
 .teamPlayer {
-    display: flex;
+    display: inline-flex;
     align-items: center;
     gap: 10px;
+    outline: 1px solid transparent;
+}
+
+.teamPlayer:hover > span {
+    color: var(--primary);
+    transition: color 0.15s ease-in-out;
+}
+
+.teamWin .teamPlayer:hover > span {
+    color: var(--white);
+    transition: color 0.15s ease-in-out;
 }
 
 .teamScore {

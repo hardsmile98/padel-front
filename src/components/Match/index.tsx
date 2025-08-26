@@ -3,13 +3,14 @@ import { GetPlayerBySlugResponse } from "@/src/types";
 import Image from "next/image";
 import avatarPlaceholder from "@/src/assets/images/avatar-placeholder.webp";
 import styles from "./styles.module.css";
+import Link from "next/link";
 
 function Match({ match }: { match: GetPlayerBySlugResponse["matches"][0] }) {
   return (
     <div className={styles.match}>
       <div className={`${styles.team} ${styles.team1} ${match.winnerId === match.team1.id ? styles.teamWin : ""}`}>
         <div className={styles.teamName}>
-          <div className={styles.teamPlayer}>
+          <Link href={`/${match.team1.player1.slug}`} className={styles.teamPlayer}>
             {match.team1.player1.avatarUrl ? (
               <img
                 src={match.team1.player1.avatarUrl}
@@ -27,9 +28,9 @@ function Match({ match }: { match: GetPlayerBySlugResponse["matches"][0] }) {
             <span>
               {match.team1.player1.lastName} {match.team1.player1.firstName}
             </span>
-          </div>
+          </Link>
 
-          <div className={styles.teamPlayer}>
+          <Link href={`/${match.team1.player2.slug}`} className={styles.teamPlayer}>
             {match.team1.player2.avatarUrl ? (
               <img
                 src={match.team1.player2.avatarUrl}
@@ -47,7 +48,7 @@ function Match({ match }: { match: GetPlayerBySlugResponse["matches"][0] }) {
             <span>
               {match.team1.player2.lastName} {match.team1.player2.firstName}
             </span>
-          </div>
+          </Link>
         </div>
 
         <div className={styles.teamScore}>
@@ -61,7 +62,7 @@ function Match({ match }: { match: GetPlayerBySlugResponse["matches"][0] }) {
 
       <div className={`${styles.team} ${styles.team2} ${match.winnerId === match.team2.id ? styles.teamWin : ""}`}>
         <div className={styles.teamName}>
-          <div className={styles.teamPlayer}>
+          <Link href={`/${match.team2.player1.slug}`} className={styles.teamPlayer}>
             {match.team2.player1.avatarUrl ? (
               <img
                 src={match.team2.player1.avatarUrl}
@@ -79,9 +80,9 @@ function Match({ match }: { match: GetPlayerBySlugResponse["matches"][0] }) {
             <span>
               {match.team2.player1.lastName} {match.team2.player1.firstName}
             </span>
-          </div>
+          </Link>
 
-          <div className={styles.teamPlayer}>
+          <Link href={`/${match.team2.player2.slug}`} className={styles.teamPlayer}>
             {match.team2.player2.avatarUrl ? (
               <img
                 src={match.team2.player2.avatarUrl}
@@ -99,7 +100,7 @@ function Match({ match }: { match: GetPlayerBySlugResponse["matches"][0] }) {
             <span>
               {match.team2.player2.lastName} {match.team2.player2.firstName}
             </span>
-          </div>
+          </Link>
         </div>
 
         <div className={styles.teamScore}>
