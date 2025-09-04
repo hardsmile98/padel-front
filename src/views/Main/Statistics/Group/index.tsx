@@ -43,7 +43,12 @@ const fetcher = (url: string) =>
         const team1 = stats[m.team1.id];
         const team2 = stats[m.team2.id];
 
+        const isEmpty = m.sets.every((s) => s === '-');
+
+        if (isEmpty) return;
+
         const parsed = parseSets(m.sets);
+
         const team1Games = parsed.reduce((sum, [a]) => sum + a, 0);
         const team2Games = parsed.reduce((sum, [, b]) => sum + b, 0);
 
