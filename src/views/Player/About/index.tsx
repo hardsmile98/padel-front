@@ -73,7 +73,7 @@ const About = ({ player }: { player: GetPlayerBySlugResponse['player'] }) => {
 
             <div className={styles.description}>
               <div>
-                {player.raiting && (
+                {!!player.raiting && (
                   <div className={styles.rating}>
                     <Image
                       width={76}
