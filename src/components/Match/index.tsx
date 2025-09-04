@@ -26,7 +26,7 @@ function Match({ match }: { match: GetPlayerBySlugResponse["matches"][0] }) {
             )}
 
             <span>
-              {match.team1.player1.lastName} {match.team1.player1.firstName}
+              {match.team1.player1.firstName} {match.team1.player1.lastName}
             </span>
           </Link>
 
@@ -46,7 +46,7 @@ function Match({ match }: { match: GetPlayerBySlugResponse["matches"][0] }) {
             )}
 
             <span>
-              {match.team1.player2.lastName} {match.team1.player2.firstName}
+              {match.team1.player2.firstName} {match.team1.player2.lastName}
             </span>
           </Link>
         </div>
@@ -78,7 +78,7 @@ function Match({ match }: { match: GetPlayerBySlugResponse["matches"][0] }) {
             )}
 
             <span>
-              {match.team2.player1.lastName} {match.team2.player1.firstName}
+              {match.team2.player1.firstName} {match.team2.player1.lastName}
             </span>
           </Link>
 
@@ -98,7 +98,7 @@ function Match({ match }: { match: GetPlayerBySlugResponse["matches"][0] }) {
             )}
 
             <span>
-              {match.team2.player2.lastName} {match.team2.player2.firstName}
+              {match.team2.player2.firstName} {match.team2.player2.lastName}
             </span>
           </Link>
         </div>
