@@ -86,9 +86,15 @@ const fetcher = (url: string) =>
         return b.gamesWon - a.gamesWon;
       });
 
+      const played = data?.matches?.filter(m => !m.sets?.every(s => s === "-"));
+
+      const upcoming = data?.matches?.filter(m => m.sets?.every(s => s === "-"));
+
       return {
         ...data,
         stats: sortedStats,
+        played,
+        upcoming,
       };
     });
 
@@ -119,7 +125,10 @@ function Group({ groupId }: { groupId: number }) {
       </div>
 
       <div>
-        <Matches matches={data?.matches ?? []} />
+        <Matches 
+          played={data?.played ?? []} 
+          upcoming={data?.upcoming ?? []} 
+        />
       </div>
     </div>
   );

@@ -1,25 +1,43 @@
-import { Match } from "@/src/components";
-import { GetGroupStatisticsResponse } from "@/src/types";
-import styles from "./styles.module.css";
+import { Match } from '@/src/components';
+import { GetGroupStatisticsResponse } from '@/src/types';
+import styles from './styles.module.css';
 
 function Matches({
-  matches,
+  played,
+  upcoming,
 }: {
-  matches: GetGroupStatisticsResponse["matches"];
+  played: GetGroupStatisticsResponse['matches'];
+  upcoming: GetGroupStatisticsResponse['matches'];
 }) {
   return (
-    <div>
-      <h2 className={styles.title}>Игры</h2>
+    <div className={styles.wrapper}>
+      <div>
+        <h2 className={styles.title}>Игры</h2>
 
-      {matches.length > 0 ? (
-        <div className={styles.matches}>
-          {matches.map((match) => (
-            <Match key={match.id} match={match} />
-          ))}
-        </div>
-      ) : (
-        <p className={styles.empty}>В этой группе еще не было игр</p>
-      )}
+        {played.length > 0 ? (
+          <div className={styles.matches}>
+            {played.map((match) => (
+              <Match key={match.id} match={match} />
+            ))}
+          </div>
+        ) : (
+          <p className={styles.empty}>В этой группе еще не было игр</p>
+        )}
+      </div>
+
+      <div>
+        <h2 className={styles.title}>Предстоящие игры</h2>
+
+        {upcoming.length > 0 ? (
+          <div className={styles.matches}>
+            {upcoming.map((match) => (
+              <Match key={match.id} match={match} />
+            ))}
+          </div>
+        ) : (
+          <p className={styles.empty}>Предстоящих игр нет</p>
+        )}
+      </div>
     </div>
   );
 }

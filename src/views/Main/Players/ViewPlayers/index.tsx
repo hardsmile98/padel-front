@@ -33,21 +33,21 @@ function ViewPlayers({ players }: { players: GetTournamentsPlayersResponse }) {
 
           <div className={styles.modalBody}>
             <div className={styles.playersList}>
-              {players.map((player) => (
+              {players?.map((player) => (
                 <div key={player.id} className={styles.player}>
-                  {player.avatarUrl ? (
-                    <img src={player.avatarUrl} alt={player.firstName} />
-                  ) : (
-                    <Image src={avatarPlaceholder} alt="avatar" />
-                  )}
+                  <Link href={`/${player.slug}`} className={styles.playerLink}>
+                    {player.avatarUrl ? (
+                      <img src={player.avatarUrl} alt={player.firstName} />
+                    ) : (
+                      <Image src={avatarPlaceholder} alt="avatar" />
+                    )}
 
-                  <div className={styles.info}>
-                    <h6>
-                      {player.firstName} {player.lastName}
-                    </h6>
-
-                    <Link href={`/${player.slug}`}>Посмотреть карточку</Link>
-                  </div>
+                    <div className={styles.info}>
+                      <h6>
+                        {player.firstName} {player.lastName}
+                      </h6>
+                    </div>
+                  </Link> 
                 </div>
               ))}
             </div>

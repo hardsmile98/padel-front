@@ -62,12 +62,23 @@
 
 .player {
     width: calc(25% - 45px);
-    display: flex;
+    display: inline-flex;
     align-items: center;
     gap: 20px;
 }
 
-.player img {
+.playerLink {
+    transition: color 0.2s ease-in-out;
+    display: inline-flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.playerLink:hover h6 {
+    color: var(--primary);
+}
+
+.playerLink img {
     width: 60px;
     height: 60px;
     border-width: 1px;
