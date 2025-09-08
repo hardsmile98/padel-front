@@ -79,24 +79,24 @@ const fetcher = (url: string) =>
       });
 
       const sortedStats = Object.values(stats).sort((a, b) => {
-        const aMatches = a.wins + a.losses;
-        const bMatches = b.wins + b.losses;
+        if (b.wins !== a.wins) return b.wins - a.wins;
+
+        if (a.losses !== b.losses) return a.losses - b.losses;
       
-        const aWinRatio = aMatches > 0 ? a.wins / aMatches : 0;
-        const bWinRatio = bMatches > 0 ? b.wins / bMatches : 0;
+        const aSetDiff = a.setsWon - a.setsLost;
+        const bSetDiff = b.setsWon - b.setsLost;
+
+        if (bSetDiff !== aSetDiff) return bSetDiff - aSetDiff;
       
-        if (bWinRatio !== aWinRatio) return bWinRatio - aWinRatio;
+        const aGameDiff = a.gamesWon - a.gamesLost;
+        const bGameDiff = b.gamesWon - b.gamesLost;
+  
+        if (bGameDiff !== aGameDiff) return bGameDiff - aGameDiff;
       
-        const aSetsRatio = a.setsWon + a.setsLost > 0 ? a.setsWon / (a.setsWon + a.setsLost) : 0;
-        const bSetsRatio = b.setsWon + b.setsLost > 0 ? b.setsWon / (b.setsWon + b.setsLost) : 0;
+        if (b.setsWon !== a.setsWon) return b.setsWon - a.setsWon;
       
-        if (bSetsRatio !== aSetsRatio) return bSetsRatio - aSetsRatio;
-      
-        const aGamesRatio = a.gamesWon + a.gamesLost > 0 ? a.gamesWon / (a.gamesWon + a.gamesLost) : 0;
-        const bGamesRatio = b.gamesWon + b.gamesLost > 0 ? b.gamesWon / (b.gamesWon + b.gamesLost) : 0;
-      
-        if (bGamesRatio !== aGamesRatio) return bGamesRatio - aGamesRatio;
-      
+        if (b.gamesWon !== a.gamesWon) return b.gamesWon - a.gamesWon;
+
         return 0;
       });
 
