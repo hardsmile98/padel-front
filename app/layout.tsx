@@ -6,7 +6,7 @@ import env from "@/src/env";
 export const metadata: Metadata = {
   metadataBase: env.SITE_URL ? new URL(env.SITE_URL) : undefined,
   title: "Расписание игр GoPadel League",
-  description: "Расписание игр и их результаты лиги по падел среди предпринимателей, топ-менеджеров и медийных лиц GoPadel League",
+  description: "GoPadel League — статистика команд и результаты матчей первой лиги по падел среди предпринимателей, топ-менеджеров и медийных лиц.",
   icons: {
     icon: {
       url: "/favicon.ico",
@@ -15,8 +15,8 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "Расписание игр GoPadel League ",
-    description: "Расписание игр и их результаты лиги по падел среди предпринимателей, топ-менеджеров и медийных лиц GoPadel League",
+    title: "Расписание игр GoPadel League",
+    description: "GoPadel League — статистика команд и результаты матчей первой лиги по падел среди предпринимателей, топ-менеджеров и медийных лиц.",
     images: ["/opengraph-image.jpg"],
     type: "website",
     siteName: "GoPadel League",
