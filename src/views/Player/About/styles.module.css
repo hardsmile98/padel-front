@@ -179,11 +179,6 @@
         height: 680px;
     }
 
-    .logo {
-        display: flex;
-        justify-content: center;
-    }
-
     .playerPhoto {
         height: 560px;
         width: auto;

@@ -16,9 +16,9 @@ function Main({
 }) {
   return (
     <>
-      <Players players={players} />
-
       {tournament && <Statistics tournament={tournament} />}
+
+      <Players players={players} />
 
       <Partners />
 

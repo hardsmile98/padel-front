@@ -1,44 +1,11 @@
 .players {
-    position: relative;
-    height: 640px;
+    padding: 40px 0;
 }
 
 .wrapper {
-    position: relative;
-    z-index: 10;
-    height: 640px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-}
-
-.background {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 1;
-}
-
-.gradient {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 1;
-}
-
-.background video {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
 }
 
 .logo {
@@ -55,8 +22,8 @@
 }
 
 .playersList {
-    height: 150px;
-    width: 500px;
+    height: 200px;
+    width: 100%;
     border-radius: 20px;
     order: 2;
     display: flex;
@@ -68,41 +35,19 @@
     background-repeat: no-repeat;
 }
 
-.description {
-    order: 1;
-}
-
-.description p {
-    font-weight: 500;
-    margin-top: 10px
-}
-
-.description p span {
-    font-weight: 400;
-    color: var(--gray);
-}
-
 @media (max-width: 600px) {
     .players {
-        height: 760px;
+        padding: 30px 0;
     }
-    
-    .wrapper {
-        height: 760px;
+
+    .playersList {
+        height: 150px;
     }
 
     .footer {
         flex-direction: column;
         align-items: flex-start;
         margin-bottom: 30px;
-    }
-
-    .description {
-        order: 2;
-    }
-
-    .description h1 {
-        font-size: var(--h3);
     }
 
     .playersList {

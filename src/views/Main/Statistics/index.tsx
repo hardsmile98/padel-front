@@ -4,6 +4,8 @@ import { GetActiveTournamentResponse } from '@/src/types';
 import styles from './styles.module.css';
 import { Container } from '@/src/components';
 import Filter from './Filter';
+import Image from 'next/image';
+import logo from '@/src/assets/images/logo.svg';
 import { useState } from 'react';
 import Group from './Group';
 
@@ -17,7 +19,20 @@ function Statistics({
   return (
     <section className={styles.statistics}>
       <Container>
-        <div className={styles.wrapper}>
+        <div>
+          <div className={styles.logo}>
+            <Image width={147} height={14} src={logo} alt="GoPadel League" />
+          </div>
+
+          <div className={styles.description}>
+              <h1>Статистика игр</h1>
+
+              <p>
+                Выберите нужную группу{" "}
+                <span>, чтобы выбрать, нажмите на таб ниже</span>
+              </p>
+            </div>
+
           <div className={styles.filter}>
             <Filter
               tournament={tournament}

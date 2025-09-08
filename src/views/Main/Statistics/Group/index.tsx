@@ -79,11 +79,25 @@ const fetcher = (url: string) =>
       });
 
       const sortedStats = Object.values(stats).sort((a, b) => {
-        if (b.wins !== a.wins) return b.wins - a.wins;
-
-        if (b.setsWon !== a.setsWon) return b.setsWon - a.setsWon;
-
-        return b.gamesWon - a.gamesWon;
+        const aMatches = a.wins + a.losses;
+        const bMatches = b.wins + b.losses;
+      
+        const aWinRatio = aMatches > 0 ? a.wins / aMatches : 0;
+        const bWinRatio = bMatches > 0 ? b.wins / bMatches : 0;
+      
+        if (bWinRatio !== aWinRatio) return bWinRatio - aWinRatio;
+      
+        const aSetsRatio = a.setsWon + a.setsLost > 0 ? a.setsWon / (a.setsWon + a.setsLost) : 0;
+        const bSetsRatio = b.setsWon + b.setsLost > 0 ? b.setsWon / (b.setsWon + b.setsLost) : 0;
+      
+        if (bSetsRatio !== aSetsRatio) return bSetsRatio - aSetsRatio;
+      
+        const aGamesRatio = a.gamesWon + a.gamesLost > 0 ? a.gamesWon / (a.gamesWon + a.gamesLost) : 0;
+        const bGamesRatio = b.gamesWon + b.gamesLost > 0 ? b.gamesWon / (b.gamesWon + b.gamesLost) : 0;
+      
+        if (bGamesRatio !== aGamesRatio) return bGamesRatio - aGamesRatio;
+      
+        return 0;
       });
 
       const played = data?.matches?.filter(m => !m.sets?.every(s => s === "-"));
