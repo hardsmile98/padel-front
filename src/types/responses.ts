@@ -178,3 +178,82 @@ export type TeamStats = {
   gamesWon: number;
   gamesLost: number;
 };
+
+export type GetCategoryStatisticsResponse = {
+  category: {
+    id: number;
+    tournamentId: number;
+    stageId: number;
+    parentCategoryId: number;
+    name: string;
+    order: number;
+    createdAt: string;
+  };
+  groups: {
+    id: number;
+    tournamentId: number;
+    stageId: number;
+    categoryId: number;
+    name: string;
+    createdAt: string;
+  }[];
+  matches: {
+    id: number;
+    groupId: number;
+    sets: string[];
+    winnerId: number;
+    createdAt: string;
+    team1: {
+      id: number;
+      player1: {
+        id: number;
+        slug: string;
+        firstName: string;
+        lastName: string;
+        avatarUrl: string;
+      };
+      player2: {
+        id: number;
+        slug: string;
+        firstName: string;
+        lastName: string;
+        avatarUrl: string;
+      };
+    };
+    team2: {
+      id: number;
+      player1: {
+        id: number;
+        slug: string;
+        firstName: string;
+        lastName: string;
+        avatarUrl: string;
+      };
+      player2: {
+        id: number;
+        slug: string;
+        firstName: string;
+        lastName: string;
+        avatarUrl: string;
+      };
+    };
+  }[];
+  teams: {
+    id: number;
+    player1Id: number;
+    player2Id: number;
+    player1: {
+      id: number;
+      slug: string;
+      firstName: string;
+      lastName: string;
+    };
+    player2: {
+      id: number;
+      slug: string;
+      firstName: string;
+      lastName: string;
+    };
+    createdAt: string;
+  }[];
+};

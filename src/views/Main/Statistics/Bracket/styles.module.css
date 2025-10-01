@@ -6,12 +6,9 @@
     gap: 20px;
     height: 200px;
     font-size: 14px;
+    color: var(--white);
 }
 
 .error {
     text-align: center;
-}
-
-.group > div:not(:last-child) {
-    margin-bottom: 30px;
 }
