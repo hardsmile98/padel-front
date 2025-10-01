@@ -8,6 +8,7 @@ import Image from 'next/image';
 import logo from '@/src/assets/images/logo.svg';
 import { useState } from 'react';
 import Group from './Group';
+import Bracket from './Bracket';
 
 function Statistics({
   tournament,
@@ -15,6 +16,10 @@ function Statistics({
   tournament: GetActiveTournamentResponse | null;
 }) {
   const [groupId, setGroupId] = useState<number | null>(null);
+
+  const [isFinalStage, setIsFinalStage] = useState<boolean>(false);
+
+  const [categoryId, setCategoryId] = useState<number | null>(null);
 
   return (
     <section className={styles.statistics}>
@@ -38,12 +43,20 @@ function Statistics({
               tournament={tournament}
               groupId={groupId}
               setGroupId={setGroupId}
+              setIsFinalStage={setIsFinalStage}
+              setCategoryId={setCategoryId}
             />
           </div>
 
-          {!!groupId && (
+          {!isFinalStage && !!groupId && (
             <div className={styles.group}>
               <Group groupId={groupId} />
+            </div>
+          )}
+
+          {isFinalStage && !!categoryId && (
+            <div className={styles.group}>
+              <Bracket categoryId={categoryId} />
             </div>
           )}
         </div>

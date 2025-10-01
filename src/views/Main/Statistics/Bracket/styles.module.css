@@ -1,0 +1,17 @@
+.loader {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    height: 200px;
+    font-size: 14px;
+}
+
+.error {
+    text-align: center;
+}
+
+.group > div:not(:last-child) {
+    margin-bottom: 30px;
+}

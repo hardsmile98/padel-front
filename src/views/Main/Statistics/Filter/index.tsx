@@ -9,10 +9,14 @@ function Filter({
   tournament,
   groupId,
   setGroupId,
+  setIsFinalStage,
+  setCategoryId,
 }: {
   tournament: GetActiveTournamentResponse | null;
   groupId: number | null;
   setGroupId: (groupId: number | null) => void;
+  setIsFinalStage: (isFinalStage: boolean) => void;
+  setCategoryId: (categoryId: number | null) => void;
 }) {
   const stages = tournament?.stages;
 
@@ -35,6 +39,8 @@ function Filter({
     subLeage: null,
   });
 
+  const isFinalStage = stages?.find((stage) => stage.id === form.stage)?.isFinal;
+
   const leages = useMemo(() => {
     return tournament?.categories?.filter(
       (category) =>
@@ -48,6 +54,24 @@ function Filter({
         category.parentCategoryId === form.leage && category.stageId === form.stage
     );
   }, [tournament?.categories, form.leage, form.stage]);
+
+  useEffect(() => {
+    const isLeageHasSubLeages = tournament?.categories
+    ?.some(category => category.parentCategoryId === form.leage);
+
+    if (isLeageHasSubLeages && form.subLeage !== form.leage) {
+      setCategoryId(form.subLeage);
+    } else if (form.subLeage !== form.leage) {
+      setCategoryId(form.leage);
+    }
+
+  }, [form.leage, form.subLeage, setCategoryId, tournament?.categories]);
+
+  useEffect(() => {
+    if (isFinalStage) {
+      setIsFinalStage(isFinalStage);
+    }
+  }, [isFinalStage, setIsFinalStage]);
 
   const groups = useMemo(() => {
     return tournament?.groups?.filter(
@@ -68,10 +92,10 @@ function Filter({
   }, [subLeages]);
 
   useEffect(() => {
-    if (groups) {
+    if (groups && !isFinalStage) {
       setGroupId(groups?.[0]?.id ?? null);
     }
-  }, [setGroupId, groups]);
+  }, [setGroupId, groups, isFinalStage]);
 
   return (
     <div>
@@ -83,7 +107,10 @@ function Filter({
             <button
               className={form.stage === stage.id ? styles.stageActive : ""}
               type="button"
-              onClick={() => setForm((prev) => ({ ...prev, stage: stage.id }))}
+              onClick={() => {
+                setForm((prev) => ({ ...prev, stage: stage.id }));
+                setIsFinalStage(stage.isFinal);
+              }}
               disabled={
                 activeStageIndex !== undefined
                   ? index > activeStageIndex
@@ -134,7 +161,7 @@ function Filter({
         </div>
       )}
 
-      {!!groups?.length && (
+      {!!groups?.length && !isFinalStage && (
         <div className={styles.groups}>
           {groups?.map((group) => (
             <button

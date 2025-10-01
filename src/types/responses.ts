@@ -71,6 +71,7 @@ export type GetActiveTournamentResponse = {
     id: number;
     tournamentId: number;
     name: string;
+    isFinal: boolean;
     order: number;
     createdAt: string;
   }[];
