@@ -71,7 +71,7 @@
     > div:after {
         content: "";
         display: block;
-        width: 25px;
+        width: calc(var(--space) / 2);
         height: 1px;
         background: #737373;
         position: absolute;
@@ -131,7 +131,7 @@
     > div:before {
         content: "";
         display: block;
-        width: 25px;
+        width: calc(var(--space) / 2);
         height: 1px;
         background: #737373;
         position: absolute;
@@ -143,7 +143,7 @@
     > div:after {
         content: "";
         display: block;
-        width: 25px;
+        width: calc(var(--space) / 2);
         height: 1px;
         background: #737373;
         position: absolute;
@@ -181,7 +181,7 @@
     > div:before {
         content: "";
         display: block;
-        width: 25px;
+        width: calc(var(--space) / 2);
         height: 1px;
         background: #737373;
         position: absolute;
@@ -193,11 +193,11 @@
     > div:after {
         content: "";
         display: block;
-        width: 25px;
+        width: var(--space);
         height: 1px;
         background: #737373;
         position: absolute;
-        right: calc(var(--space) / 2 * -1);
+        right: calc(var(--space)  * -1);
         top: calc(50% - 1px);
         transform: translateY(50%);
     }
@@ -206,23 +206,6 @@
 .winners {
     display: flex;
     flex-direction: column;
-    position: relative;
-
-    >div {
-        position: relative;
-    }
-
-    >div:before {
-        content: "";
-        display: block;
-        width: 25px;
-        height: 1px;
-        background: #737373;
-        position: absolute;
-        left: calc(var(--space) / 2 * -1);
-        top: calc(50% - 1px);
-        transform: translateY(50%);
-    }
 
     >div:nth-child(1) {
         margin-top: 324px;
