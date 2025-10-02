@@ -1,3 +1,7 @@
+:root {
+    --space: 50px;
+}
+
 .loader {
     display: flex;
     flex-direction: column;
@@ -5,10 +9,247 @@
     justify-content: center;
     gap: 20px;
     height: 200px;
-    font-size: 14px;
     color: var(--white);
 }
 
 .error {
     text-align: center;
+}
+
+.stages {
+    display: flex;
+    flex-direction: row;
+    gap: var(--space);
+    overflow-x: auto;
+}
+
+.stages::-webkit-scrollbar {
+    height: 6px;
+  }
+  
+  .stages::-webkit-scrollbar-thumb {
+    background: #666;
+    border-radius: 3px;
+  }
+  
+  .stages::-webkit-scrollbar-track {
+    background: #222;
+  }
+
+.stage {
+    width: calc(100% / 4);
+    min-width: 200px;
+}
+
+.stageTitle {
+    border-left: 3px solid var(--primary);
+    padding-left: 10px;
+    margin-bottom: 50px;
+}
+
+.quarterfinals {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    position: relative;
+
+    &:before {
+        content: "";
+        display: block;
+        width: 1px;
+        height: calc(100% + 290px);
+        background: #737373;
+        position: absolute;
+        top: 70;
+        right: calc(var(--space) / 2 * -1);
+    }
+
+    > div {
+        position: relative;
+    }
+
+    > div:after {
+        content: "";
+        display: block;
+        width: 25px;
+        height: 1px;
+        background: #737373;
+        position: absolute;
+        right: calc(var(--space) / 2 * -1);
+        top: calc(50% - 1px);
+        transform: translateY(50%);
+    }
+}
+
+.semifinals {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+
+    &:before {
+        content: "";
+        display: block;
+        width: 1px;
+        height: calc(100% - 50px);
+        background: #737373;
+        position: absolute;
+        top: 160px;
+        right: calc(var(--space) / 2 * -1);
+    }
+
+    &:after {
+        content: "";
+        display: block;
+        width: 1px;
+        height: calc(100% - 50px);
+        background: #737373;
+        position: absolute;
+        top: 160px;
+        right: calc(var(--space) / 2 * -1);
+    }
+
+    > div {
+        position: relative;
+    }
+
+    > div:nth-child(1) {
+        margin-top: 90px;
+    }
+
+    > div:nth-child(2) {
+        margin-top: 200px;
+    }
+
+    > div:nth-child(3) {
+        margin-top: 200px;
+    }
+
+    > div:nth-child(4) {
+        margin-top: 30px;
+    }
+
+    > div:before {
+        content: "";
+        display: block;
+        width: 25px;
+        height: 1px;
+        background: #737373;
+        position: absolute;
+        left: calc(var(--space) / 2 * -1);
+        top: calc(50% - 1px);
+        transform: translateY(50%);
+    }
+
+    > div:after {
+        content: "";
+        display: block;
+        width: 25px;
+        height: 1px;
+        background: #737373;
+        position: absolute;
+        right: calc(var(--space) / 2 * -1);
+        top: calc(50% - 1px);
+        transform: translateY(50%);
+    }
+}
+
+.finals {
+    display: flex;
+    flex-direction: column;
+
+    > div {
+        position: relative;
+    }
+
+    > div:nth-child(1) {
+        margin-top: 260px;
+    }
+
+    > div:nth-child(2) {
+        margin-top: 200px;
+    }
+
+    > div:nth-child(3) {
+        margin-top: 120px;
+    }
+
+    > div:nth-child(4) {
+        margin-top: 120px;
+    }
+
+
+    > div:before {
+        content: "";
+        display: block;
+        width: 25px;
+        height: 1px;
+        background: #737373;
+        position: absolute;
+        left: calc(var(--space) / 2 * -1);
+        top: calc(50% - 1px);
+        transform: translateY(50%);
+    }
+
+    > div:after {
+        content: "";
+        display: block;
+        width: 25px;
+        height: 1px;
+        background: #737373;
+        position: absolute;
+        right: calc(var(--space) / 2 * -1);
+        top: calc(50% - 1px);
+        transform: translateY(50%);
+    }
+}
+
+.winners {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+
+    >div {
+        position: relative;
+    }
+
+    >div:before {
+        content: "";
+        display: block;
+        width: 25px;
+        height: 1px;
+        background: #737373;
+        position: absolute;
+        left: calc(var(--space) / 2 * -1);
+        top: calc(50% - 1px);
+        transform: translateY(50%);
+    }
+
+    >div:nth-child(1) {
+        margin-top: 324px;
+    }
+
+    >div:nth-child(2) {
+        margin-top: 280px;
+    }
+    
+    >div:nth-child(3) {
+        margin-top: 200px;
+    }
+
+    >div:nth-child(4) {
+        margin-top: 200px;
+    }
+}
+
+.playoffStage {
+    position: relative;
+}
+
+.playoff {
+    position: absolute;
+    bottom: calc(100% - 350px);
+    left: 0;
+    width: 100%;
+    height: auto;
+    z-index: 1;
 }

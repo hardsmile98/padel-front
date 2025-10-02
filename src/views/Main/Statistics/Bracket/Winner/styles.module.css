@@ -1,0 +1,54 @@
+.root {
+    position: relative;
+}
+
+.place {
+    position: absolute;
+    bottom: -30px;
+    right: 0;
+}
+
+
+.winner {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 60px;
+    border-radius: 20px;
+    color: var(--white);
+    padding: 10px;
+}
+
+.place1 {
+    background-color: #AFFF3F;
+    color: var(--black);
+
+    & a:hover {
+        color: var(--black);
+    }
+}
+
+.place3 {
+    background-color: #FFB63F;
+    color: var(--black);
+
+    & a:hover {
+        color: var(--black);
+    }
+}
+
+.place5 {
+    background-color: #63491E;
+
+    & a:hover {
+        color: var(--primary);
+    }
+}
+
+.place7 {
+    background-color: #251B0B;
+
+    & a:hover {
+        color: var(--primary);
+    }
+}

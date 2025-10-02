@@ -26,7 +26,13 @@ function Statistics({
       <Container>
         <div>
           <div className={styles.logo}>
-            <Image width={147} height={14} src={logo} alt="GoPadel League" />
+            <Image
+              width={147} 
+              height={14} 
+              src={logo} 
+              priority 
+              alt="GoPadel League" 
+             />
           </div>
 
           <div className={styles.description}>
