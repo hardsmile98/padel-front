@@ -15,8 +15,8 @@ const fetcher = (url: string) =>
       const matches = data.matches || [];
       const groups = data.groups || [];
 
-      if (!groups.length) {
-        return { groupsMap: {}, winners: [] };
+      if (groups.length < 3) {
+        return { groupsMap: {}, winners: [], isEmpty: true };
       }
 
       const groupsMap: Record<string, any[]> = {};
@@ -48,7 +48,7 @@ const fetcher = (url: string) =>
           })
         : [];
 
-      return { groupsMap, winners };
+      return { groupsMap, winners, isEmpty: false };
     });
 
 function Bracket({ categoryId }: { categoryId: number }) {
@@ -65,7 +65,7 @@ function Bracket({ categoryId }: { categoryId: number }) {
     return <div className={styles.loader}>Загрузка...</div>;
   }
 
-  if (!data) {
+  if (!data || data.isEmpty) {
     return <div className={styles.error}>Нет данных</div>;
   }
 
