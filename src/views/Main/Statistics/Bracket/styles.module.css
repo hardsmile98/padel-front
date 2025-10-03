@@ -2,6 +2,14 @@
     --space: 50px;
 }
 
+.extraStages {
+    margin-top: 80px;
+}
+
+.extraStages > h3 {
+    margin-bottom: 40px;
+}
+
 .loader {
     display: flex;
     flex-direction: column;

@@ -52,3 +52,16 @@
         color: var(--primary);
     }
 }
+
+.place9,
+.place11,
+.place13,
+.place15
+ {
+    background-color: #262525;
+    color: var(--white);
+
+    & a:hover {
+        color: var(--primary);
+    }
+}

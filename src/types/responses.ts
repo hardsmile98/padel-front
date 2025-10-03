@@ -199,6 +199,7 @@ export type GetCategoryStatisticsResponse = {
   }[];
   matches: {
     id: number;
+    type: string | null;
     groupId: number;
     sets: string[];
     winnerId: number;
