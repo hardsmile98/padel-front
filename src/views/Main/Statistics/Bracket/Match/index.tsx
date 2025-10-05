@@ -47,7 +47,7 @@ type Match = {
 function Match({ match }: { match: Match }) {
     return (
         <div className={styles.match}>
-            <div className={`${styles.team} ${match.winnerId === match.team1?.id ? styles.winner : ""}`}>
+            <div className={`${styles.team} ${match.winnerId && match.winnerId === match.team1?.id ? styles.winner : ""}`}>
                 <div className={styles.teamName}>
                     <Link href={`/${match.team1?.player1?.slug}`}>
                         {match.team1?.player1?.firstName ? `${match.team1?.player1?.firstName?.[0]}.` : ""} {match.team1?.player1?.lastName}
@@ -65,7 +65,7 @@ function Match({ match }: { match: Match }) {
                 </div>
             </div>
 
-            <div className={`${styles.team} ${match.winnerId === match.team2?.id ? styles.winner : ""}`}>
+            <div className={`${styles.team} ${match.winnerId && match.winnerId === match.team2?.id ? styles.winner : ""}`}>
                 <div className={styles.teamName}>
                     <Link href={`/${match.team2?.player1?.slug}`}>
                         {match.team2?.player1?.firstName ? `${match.team2?.player1?.firstName?.[0]}.` : ""} {match.team2?.player1?.lastName}
