@@ -8,6 +8,17 @@ import Winner from './Winner';
 import Image from 'next/image';
 import playoff from '@/src/assets/images/playoff.webp';
 
+const payoffMap = {
+  [2]: {
+    type: 'small',
+    countMatchesInGroup: 3,
+  },
+  [3]: {
+    type: 'big',
+    countMatchesInGroup: 4,
+  },
+};
+
 const fetcher = (url: string) =>
   fetch(url)
     .then((r) => r.json())
@@ -16,13 +27,17 @@ const fetcher = (url: string) =>
 
       const groups = data.groups || [];
 
+      const countOfGroups = groups.length;
+
+      const playOff = payoffMap[countOfGroups as keyof typeof payoffMap];
+
+      if (!playOff) {
+        return null;
+      }
+
       const mainMatches = matches.filter((m) => m.type === null);
 
       const extraMatches = matches.filter((m) => m.type === 'extra');
-
-      if (groups.length < 3) {
-        return null;
-      }
 
       const groupsMap: Record<string, any[]> = {};
 
@@ -32,8 +47,14 @@ const fetcher = (url: string) =>
         );
       });
 
-      Object.keys(groupsMap).forEach((name) => {
-        while (groupsMap[name].length < 4) {
+      Object.keys(groupsMap).forEach((name, index, array) => {
+        const isLastGroup = index === array.length - 1;
+
+        const countEmpty = playOff.type === 'small' && isLastGroup 
+          ? playOff.countMatchesInGroup - 1
+          : playOff.countMatchesInGroup;
+
+        while (groupsMap[name].length < countEmpty) {
           groupsMap[name].push({
             groupId: null,
             team1: null,
@@ -45,15 +66,41 @@ const fetcher = (url: string) =>
       });
 
       const finalGroup = groups[groups.length - 1];
+      const grandFinalGroup = groups[groups.length - 2];
 
-      const winners = finalGroup
-        ? groupsMap[finalGroup.name].map((m) => {
-            if (m.team1 && m.team2 && m.winnerId) {
-              return m.team1.id === m.winnerId ? m.team1 : m.team2;
-            }
-            return null;
-          })
-        : [];
+      let winners = [];
+
+      switch (playOff.type) {
+        case 'big':
+          winners = grandFinalGroup
+            ? groupsMap[grandFinalGroup.name].map((m) => {
+                if (m.team1 && m.team2 && m.winnerId) {
+                  return m.team1.id === m.winnerId ? m.team1 : m.team2;
+                }
+                return null;
+              })
+            : [];
+          break;
+        case 'small':
+          const lastGrandFinalMatch =
+            groupsMap[grandFinalGroup.name][
+              groupsMap[grandFinalGroup.name].length - 1
+            ];
+          const lastMatches = [
+            ...groupsMap[finalGroup.name],
+            lastGrandFinalMatch,
+          ];
+
+          winners = finalGroup
+            ? lastMatches.map((m) => {
+                if (m.team1 && m.team2 && m.winnerId) {
+                  return m.team1.id === m.winnerId ? m.team1 : m.team2;
+                }
+                return null;
+              })
+            : [];
+          break;
+      }
 
       if (extraMatches.length === 0) {
         return {
@@ -61,6 +108,7 @@ const fetcher = (url: string) =>
           winners,
           extraGroupsMap: null,
           extraWinners: null,
+          type: playOff.type,
         };
       }
 
@@ -72,8 +120,14 @@ const fetcher = (url: string) =>
         );
       });
 
-      Object.keys(extraGroupsMap).forEach((name) => {
-        while (extraGroupsMap[name].length < 4) {
+      Object.keys(extraGroupsMap).forEach((name, index, array) => {
+        const isLastGroup = index === array.length - 1;
+
+        const countEmpty = playOff.type === 'small' && isLastGroup 
+          ? playOff.countMatchesInGroup - 1
+          : playOff.countMatchesInGroup;
+
+        while (extraGroupsMap[name].length < countEmpty) {
           extraGroupsMap[name].push({
             groupId: null,
             team1: null,
@@ -84,20 +138,46 @@ const fetcher = (url: string) =>
         }
       });
 
-      const extraWinners = finalGroup
-        ? extraGroupsMap[finalGroup.name].map((m) => {
-            if (m.team1 && m.team2 && m.winnerId) {
-              return m.team1.id === m.winnerId ? m.team1 : m.team2;
-            }
-            return null;
-          })
-        : [];
+      let extraWinners = [];
+
+      switch (playOff.type) {
+        case 'big':
+          extraWinners = finalGroup
+            ? extraGroupsMap[finalGroup.name].map((m) => {
+                if (m.team1 && m.team2 && m.winnerId) {
+                  return m.team1.id === m.winnerId ? m.team1 : m.team2;
+                }
+                return null;
+              })
+            : [];
+          break;
+        case 'small':
+          const lastGrandFinalMatch =
+            groupsMap[grandFinalGroup.name][
+              groupsMap[grandFinalGroup.name].length - 1
+            ];
+          const lastMatches = [
+            ...groupsMap[finalGroup.name],
+            lastGrandFinalMatch,
+          ];
+
+          extraWinners = finalGroup
+            ? lastMatches.map((m) => {
+                if (m.team1 && m.team2 && m.winnerId) {
+                  return m.team1.id === m.winnerId ? m.team1 : m.team2;
+                }
+                return null;
+              })
+            : [];
+          break;
+      }
 
       return {
         groupsMap,
         winners,
         extraGroupsMap,
         extraWinners,
+        type: playOff.type,
       };
     });
 
@@ -117,6 +197,86 @@ function Bracket({ categoryId }: { categoryId: number }) {
 
   if (!data) {
     return <div className={styles.error}>Нет данных</div>;
+  }
+
+  if (data.type === 'small') {
+    return (
+      <>
+        <div className={styles.stages}>
+          {Object.keys(data.groupsMap).map((group, index) => {
+            const style = styles[`small-matches-${index}`];
+
+            return (
+              <div key={group} className={styles.smallStage}>
+                <h5 className={styles.stageTitle}>{group}</h5>
+
+                <div className={`${styles.matches} ${style}`}>
+                  {data.groupsMap[group].map((match, index) => (
+                    <div key={index}>
+                      <Match match={match} />
+                    </div>
+                  ))}
+                </div>
+              </div>
+            );
+          })}
+
+          <div className={`${styles.smallStage} ${styles.playoffStage}`}>
+            <h5 className={styles.stageTitle}></h5>
+
+            <div className={styles.smallWinners}>
+              {data.winners.map((winner, index) => (
+                <div key={index}>
+                  <Winner winner={winner} place={2 * index + 1} />
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {data.extraGroupsMap && (
+          <div className={styles.extraStages}>
+            <h3>Матчи за 7–12-е места</h3>
+
+            <div className={styles.stages}>
+              {Object.keys(data.extraGroupsMap).map((group, index) => {
+                const style = styles[`small-matches-${index}`];
+
+                return (
+                  <div key={group} className={styles.smallStage}>
+                    <h5 className={styles.stageTitle}>{group}</h5>
+
+                    <div className={`${styles.matches} ${style}`}>
+                      {data.extraGroupsMap[group].map((match, index) => (
+                        <div key={index}>
+                          <Match match={match} />
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                );
+              })}
+
+              <div className={`${styles.smallStage} ${styles.playoffStage}`}>
+                <h5 className={styles.stageTitle}></h5>
+
+                <div className={styles.smallWinners}>
+                  {data.extraWinners.map((winner, index) => (
+                    <div key={index}>
+                      <Winner
+                        winner={winner}
+                        place={6 + 2 * index + 1}
+                        type="extra-small"
+                      />
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+      </>
+    );
   }
 
   return (
@@ -165,27 +325,27 @@ function Bracket({ categoryId }: { categoryId: number }) {
         <div className={styles.extraStages}>
           <h3>Матчи за 9–16-е места</h3>
 
-        <div className={styles.stages}>
-          {Object.keys(data.extraGroupsMap).map((group, index) => {
-            const style = styles[`matches-${index}`];
+          <div className={styles.stages}>
+            {Object.keys(data.extraGroupsMap).map((group, index) => {
+              const style = styles[`matches-${index}`];
 
-            return (
-              <div key={group} className={styles.stage}>
-                <h5 className={styles.stageTitle}>{group}</h5>
+              return (
+                <div key={group} className={styles.stage}>
+                  <h5 className={styles.stageTitle}>{group}</h5>
 
-                <div className={`${styles.matches} ${style}`}>
-                  {data.extraGroupsMap[group].map((match, index) => (
-                    <div key={index}>
-                      <Match match={match} />
-                    </div>
-                  ))}
+                  <div className={`${styles.matches} ${style}`}>
+                    {data.extraGroupsMap[group].map((match, index) => (
+                      <div key={index}>
+                        <Match match={match} />
+                      </div>
+                    ))}
+                  </div>
                 </div>
-              </div>
-            );
-          })}
+              );
+            })}
 
-          <div className={`${styles.stage} ${styles.playoffStage}`}>
-            <h5 className={styles.stageTitle}></h5>
+            <div className={`${styles.stage} ${styles.playoffStage}`}>
+              <h5 className={styles.stageTitle}></h5>
               <div className={styles.winners}>
                 {data.winners.map((winner, index) => (
                   <div key={index}>

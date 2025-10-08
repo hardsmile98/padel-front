@@ -21,14 +21,15 @@ type WinnerProps = {
     };
   } | null;
   place: number;
+  type?: 'small' | 'extra-small';
 };
 
-const Winner = ({ winner, place }: WinnerProps) => {
+const Winner = ({ winner, place, type }: WinnerProps) => {
   const placeClass = `place${place}`;
 
   return (
-    <div className={styles.root}>
-      <div className={`${styles.winner} ${styles[placeClass]}`}>
+    <div className={`${styles.root}`}>
+      <div className={`${styles.winner} ${styles[placeClass]} ${styles[type ?? '']}`}>
         <Link href={`/${winner?.player1?.slug}`} className={styles.winnerName}>
           {winner?.player1?.firstName ? winner?.player1?.firstName[0] + '.' : ''} {winner?.player1?.lastName}
         </Link>
