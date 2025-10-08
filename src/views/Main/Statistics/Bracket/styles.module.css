@@ -228,14 +228,14 @@
     }
 
     > div:nth-child(3) {
-        margin-top: 160px;
+        margin-top: 95px;
     }
 
     &:before {
         content: "";
         display: block;
         width: 1px;
-        height: calc(100% - 385px);
+        height: 255px;
         background: #737373;
         position: absolute;
         top: 70;
@@ -316,7 +316,7 @@
     }
     
     >div:nth-child(3) {
-        margin-top: 180px;
+        margin-top: 120px;
     }
 }
 
