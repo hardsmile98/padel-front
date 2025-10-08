@@ -49,6 +49,11 @@
     min-width: 200px;
 }
 
+.finalStage {
+    width: calc(100% / 4);
+    min-width: 200px;
+}
+
 .smallStage {
     width: calc(100% / 3);
     min-width: 200px;
@@ -300,6 +305,46 @@
         left: 100%;
         top: calc(50% - 1px);
         transform: translateY(50%);
+    }
+}
+
+.final-matches-0 {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    position: relative;
+
+    > div {
+        position: relative;
+    }
+    
+    > div:after {
+        content: "";
+        display: block;
+        width: var(--space);
+        height: 1px;
+        background: #737373;
+        position: absolute;
+        right: calc(var(--space) * -1);
+        top: calc(50% - 1px);
+        transform: translateY(50%);
+    }
+}
+
+.finalWinners {
+    display: flex;
+    flex-direction: column;
+
+    >div:nth-child(1) {
+        margin-top: 65px;
+    }
+
+    >div:nth-child(2) {
+        margin-top: 105px;
+    }
+
+    >div:nth-child(3) {
+        margin-top: 115px;
     }
 }
 
