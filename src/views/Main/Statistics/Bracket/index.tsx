@@ -72,8 +72,8 @@ const fetcher = (url: string) =>
 
       switch (playOff.type) {
         case 'big':
-          winners = grandFinalGroup
-            ? groupsMap[grandFinalGroup.name].map((m) => {
+          winners = finalGroup
+            ? groupsMap[finalGroup.name].map((m) => {
               if (m.team1 && m.team2 && m.winnerId) {
                 return m.team1.id === m.winnerId ? m.team1 : m.team2;
               }
@@ -272,7 +272,7 @@ function Bracket({ categoryId }: { categoryId: number }) {
                         ))}
                       </div>
                     </div>
-                  );
+                  )
                 })}
 
                 <div className={`${styles.finalStage} ${styles.playoffStage}`}>
@@ -400,7 +400,7 @@ function Bracket({ categoryId }: { categoryId: number }) {
             <div className={`${styles.stage} ${styles.playoffStage}`}>
               <h5 className={styles.stageTitle}></h5>
               <div className={styles.winners}>
-                {data.winners.map((winner, index) => (
+                {data.extraWinners.map((winner, index) => (
                   <div key={index}>
                     <Winner winner={winner} place={8 + 2 * index + 1} />
                   </div>
